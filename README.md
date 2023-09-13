@@ -1,5 +1,7 @@
 # TJUcourseTable
-make TJU coursetable
+function:make TJU coursetable
+
+steps:
 
 download the makeCourseTable.py
 
