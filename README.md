@@ -1,6 +1,8 @@
 # TJUcourseTable
 function:make TJU coursetable
 
+可观看instructions.mp4
+
 steps:
 
 download the makeCourseTable.py 下载makeCourseTable.py文件
