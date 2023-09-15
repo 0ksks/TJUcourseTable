@@ -15,7 +15,7 @@ class course:
         self.location=location
         self.ord=weekdays[weekday]*100+dailyTime[0]
 
-i=course("星期三",[7,8],"全","电影名片鉴赏","杨晓林","惟新馆小影院")
+i=course("星期一",[10,11],"全","数据结构","尤鸣宇","北221")
 
 Path(filePath+termN).mkdir(parents=True, exist_ok=True)
 Path(filePath+termN+"/"+"%d %s"%(i.ord,i.name)).mkdir(parents=True, exist_ok=True)
@@ -46,7 +46,7 @@ startD = datetime(2023,9,11)
 for j in range(16):
     if i.weeks=="全":
         event = Event()
-        event.add('uid', "%dadd"%(cnt))
+        event.add('uid', "%d%d"%(cnt,sum([ord(cha) for cha in i.name])))
         weekday = startD+timedelta(days=(weekdays[i.weekday]-1))
         event.add('dtstart', datetime.combine(weekday,dtime[i.dailyTime[0]][0]))
         event.add('dtend', datetime.combine(weekday,dtime[i.dailyTime[1]][1]))
@@ -57,7 +57,7 @@ for j in range(16):
         del event
     if i.weeks=="单" and j%2==0:
         event = Event()
-        event.add('uid', "%dadd"%(cnt))
+        event.add('uid', "%d%d"%(cnt,sum([ord(cha) for cha in i.name])))
         weekday = startD+timedelta(days=(weekdays[i.weekday]-1))
         event.add('dtstart', datetime.combine(weekday,dtime[i.dailyTime[0]][0]))
         event.add('dtend', datetime.combine(weekday,dtime[i.dailyTime[1]][1]))
@@ -68,7 +68,7 @@ for j in range(16):
         del event
     if i.weeks=="双" and j%2==1:
         event = Event()
-        event.add('uid', "%dadd"%(cnt))
+        event.add('uid', "%d%d"%(cnt,sum([ord(cha) for cha in i.name])))
         weekday = startD+timedelta(days=(weekdays[i.weekday]-1))
         event.add('dtstart', datetime.combine(weekday,dtime[i.dailyTime[0]][0]))
         event.add('dtend', datetime.combine(weekday,dtime[i.dailyTime[1]][1]))
@@ -79,7 +79,7 @@ for j in range(16):
         del event
     startD = startD + timedelta(days=7)
 try:
-    with open('/Users/pc/Desktop/'+"addCourse"+'.ics', 'wb') as file:
+    with open('/Users/pc/Desktop/'+"addCourse%s"%(i.name)+'.ics', 'wb') as file:
         file.write(cal.to_ical())
         print('ics日历制作完成!')
 except Exception:
